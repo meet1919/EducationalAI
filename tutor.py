@@ -57,9 +57,6 @@ class CommerceTutor(Tutor):
     def assist_with(self, query):
         return super().assist_with(query)
     
-
-    
-
 science_tutor = ScienceTutor()
 answer = science_tutor.assist_with('What are organic compounds?')
 print(answer)
