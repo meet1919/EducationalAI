@@ -1,10 +1,11 @@
 from langchain.callbacks.manager import AsyncCallbackManagerForToolRun, CallbackManagerForToolRun
 from langchain.utilities import SerpAPIWrapper
-from school_staff_chain.tutor import ScienceTutor, CommerceTutor
+from school_staff.tutor import ScienceTutor, CommerceTutor
 from langchain.chat_models import ChatOpenAI
 from langchain.utilities import PythonREPL
 from langchain.tools import BaseTool
 from langchain.agents import Tool
+from school_staff.python_programmer import PythonProgrammer
 from typing import Optional
 
 class ScienceProfessorRouterTool(BaseTool):
@@ -42,13 +43,13 @@ class CommerceProfessorRouterTool(BaseTool):
 class PythonExecutorTool(BaseTool):
     name = 'python_exec'
     description = 'useful when you need to answer academics question related to commerce stream.'
-    # return_direct = True
+    return_direct = True
     llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.9)
     
     def _run(self, query: str, run_manager: Optional[CallbackManagerForToolRun] = None) -> str:
         """ Choose which professor to call to answer the user query with router chains """
-        commerce_tutor = CommerceTutor()
-        answer = commerce_tutor.assist_with(query)
+        python_executor = PythonProgrammer()
+        answer = python_executor.solve(query)
         return answer
         
     async def _arun(self, query: str, run_manager: Optional[AsyncCallbackManagerForToolRun] = None) -> str:
