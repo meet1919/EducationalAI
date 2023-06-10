@@ -1,3 +1,4 @@
+from school_library.professor_prompts import SCIENCE_PROFESSOR_PROMPTS, COMMERCE_PROFESSOR_PROMPTS
 from langchain.chains.router.embedding_router import EmbeddingRouterChain
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains.router import MultiPromptChain
@@ -7,8 +8,6 @@ from langchain.chat_models import ChatOpenAI
 from dotenv import load_dotenv, find_dotenv
 from langchain.chains.llm import LLMChain
 from langchain.vectorstores import Chroma
-from professor_prompts import SCIENCE_PROFESSOR_PROMPTS, COMMERCE_PROFESSOR_PROMPTS
-
 load_dotenv(find_dotenv())
 
 class Tutor:

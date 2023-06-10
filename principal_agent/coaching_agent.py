@@ -1,8 +1,7 @@
-
-from principal_prompts import PRINCIPAL_BOT_PREFIX, PRINCIPAL_BOT_FORMAT_INSTRUCTIONS, PRINCIPAL_BOT_SUFFIX
+from school_library.principal_prompts import PRINCIPAL_BOT_PREFIX, PRINCIPAL_BOT_FORMAT_INSTRUCTIONS, PRINCIPAL_BOT_SUFFIX
 from langchain.memory import ConversationBufferMemory
 from langchain.agents import initialize_agent
-from school_custom_tools import define_tools
+from school_resources.school_custom_tools import define_tools
 from langchain.chat_models import ChatOpenAI
 from dotenv import load_dotenv, find_dotenv
 import gradio as gr
@@ -36,22 +35,3 @@ class SchoolBot:
             query[-1][1] += character
             time.sleep(0.001)
             yield query
-
-inputs = gr.inputs.Textbox(lines=7, label="Chat with AI")
-outputs = gr.outputs.Textbox(label="Reply")
-
-coachbarBot = SchoolBot()
-with gr.Blocks(css='#chatbot {height: 80vh}') as demo:
-    with gr.Column(scale=1):
-        chatbot = gr.Chatbot(elem_id="chatbot", label='Chat with AI')
-        query = gr.Textbox(placeholder='Ask anything', show_label=False)
-
-        def user(user_message, history):
-            return "", history + [[user_message, None]]
-
-        query.submit(user, [query, chatbot], [query, chatbot], queue=False).then(
-            coachbarBot.assist_with, chatbot, chatbot
-        )
-
-demo.queue()
-demo.launch()

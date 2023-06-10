@@ -35,6 +35,11 @@ SCIENCE_PROFESSOR_PROMPTS = [
         "name": "chemistry", 
         "description": "Good for answering chemistry questions", 
         "prompt_template": chemistry_professor_template
+    },
+    {
+        "name": "computer", 
+        "description": "Good for answering questions related to computer science", 
+        "prompt_template": chemistry_professor_template
     }
 ]
 
