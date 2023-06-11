@@ -19,6 +19,13 @@ question.
 Here is a question:
 {input}"""
 
+computer_professor_template = """You are a very good computer science. You are great at answering computer science questions. You are so good because you are able 
+to break down hard problems into their component parts, answer the component parts, and then put them together to answer the broader 
+question.
+
+Here is a question:
+{input}"""
+
 
 SCIENCE_PROFESSOR_PROMPTS = [
     {
@@ -39,7 +46,7 @@ SCIENCE_PROFESSOR_PROMPTS = [
     {
         "name": "computer", 
         "description": "Good for answering questions related to computer science", 
-        "prompt_template": chemistry_professor_template
+        "prompt_template": computer_professor_template
     }
 ]
 
@@ -63,11 +70,11 @@ COMMERCE_PROFESSOR_PROMPTS = [
     {
         "name": "economics", 
         "description": "Good for answering questions about economics", 
-        "prompt_template": physics_professor_template
+        "prompt_template": economics_professor_template
     },
     {
         "name": "accounting", 
         "description": "Good for answering accounting questions", 
-        "prompt_template": math_professor_template
+        "prompt_template": accounting_professor_template
     },
 ]
